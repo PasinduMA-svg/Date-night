@@ -293,9 +293,11 @@ window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 });
 
-// ✅ TYPEWRITER
+/* ✅ TYPEWRITER (FULL FIX) */
 const text = `We met last September, and we became friends just talking, laughing, and getting to know each other, and somehow everything just felt right. Then came that night, January 1st, 2026, in Ahangama, at midnight, as a new year was beginning, that’s when I asked you to be mine ❤️ And on February 12th, you said yes, and that moment is something I will never forget. It’s only been 4 months, but it honestly feels like so much more. We’ve been through things that tested us, and we’re still here. And that’s why I know… I really know… you are the one for me ❤️`;
-let i=0;
+
+let i = 0;
+
 function typeWriter(){
   if(i < text.length){
     document.getElementById("storyText").innerHTML += text.charAt(i);
@@ -304,11 +306,14 @@ function typeWriter(){
   }
 }
 
-let started=false;
-window.addEventListener("scroll",()=>{
-  const section=document.querySelector(".story-section");
-  if(section.getBoundingClientRect().top < window.innerHeight-100 && !started){
-    started=true;
+let started = false;
+
+window.addEventListener("scroll", () => {
+  const section = document.querySelector(".story-section");
+  const top = section.getBoundingClientRect().top;
+
+  if (top < window.innerHeight - 100 && !started) {
+    started = true;
     typeWriter();
   }
 });
