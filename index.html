@@ -45,18 +45,19 @@ section {
 .hero-text { position: absolute; top: 180px; left: 100px; color: white; z-index: 2; }
 .hero-text h1 { font-size: 70px; }
 
-/* ✅ STORY SECTION FIXED */
+/* 1. Reset the section to be a container for the image */
 .story-section {
   position: relative;
   min-height: 100vh;
-  display: flex;
+  width: 100%;
+  display: flex; /* Centers the box */
   align-items: center;
   justify-content: center;
-  /* This ensures the section fills the screen */
-  background: black; 
+  background: black;
+  overflow: hidden;
 }
 
-/* We make the image-box a full-screen background layer */
+/* 2. Full background image container */
 .image-box {
   position: absolute;
   top: 0;
@@ -70,25 +71,32 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6; /* Dims the photo so white text is readable */
+  opacity: 0.8; /* Slightly dim the image so text pops */
 }
 
-/* The glass text box */
+/* 3. The Glass Box */
 .text-box {
   position: relative;
-  z-index: 1;
-  width: 90%;
-  max-width: 500px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
+  z-index: 1; /* Sits above the image */
+  width: 85%; /* Fits nicely on mobile */
+  max-width: 450px;
+  
+  /* Glass Effect */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
   padding: 30px;
-  border-radius: 20px;
+  
   color: white;
   text-align: center;
   font-family: 'Patrick Hand', cursive;
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1.5;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
-
 /* ✅ DATE SECTION FIXED */
 .date-section {
   position: relative;
