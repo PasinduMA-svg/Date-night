@@ -45,10 +45,48 @@ section {
 .hero-text { position: absolute; top: 180px; left: 100px; color: white; z-index: 2; }
 .hero-text h1 { font-size: 70px; }
 
-/* ✅ STORY & QUESTION SECTIONS */
-.image-box img { width: 450px; height: 520px; border-radius: 12px; object-fit: cover; }
-.text-box { max-width: 650px; font-family: 'Patrick Hand', cursive; font-size: 22px; line-height: 1.7; text-align: center; }
-.question-text h2 { font-family: 'Playfair Display', serif; font-size: 50px; text-align: center; }
+/* ✅ STORY */
+.story-section {
+  position: relative;
+  background: black; /* Dark background behind the changing image */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* The photo changing in the background */
+.image-box {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7; /* Makes it slightly dark so text is readable */
+}
+
+/* The Glass Box for your text */
+.text-box {
+  position: relative;
+  z-index: 2;
+  width: 85%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: center;
+}
 
 /* ✅ SECTION 4 */
 .date-section { position: relative; width: 100%; min-height: 100vh; }
