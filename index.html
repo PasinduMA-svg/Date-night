@@ -12,7 +12,24 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
+@media (max-width: 768px) {
+  /* Make text smaller so it fits */
+  .hero-text h1 { font-size: 40px; left: 20px; }
+  
+  /* Stack items vertically instead of side-by-side */
+  .story-section, .question-section { flex-direction: column; padding: 20px; }
+  
+  /* Make images responsive */
+  .image-box img { width: 100%; height: auto; }
+  
+  /* Ensure text box fits screen */
+  .text-box { width: 90%; font-size: 18px; }
+  
+  /* Make the grid 1 column on mobile */
+  .grid { grid-template-columns: 1fr; }
+  
+  .calendar-box, .cuisine-box { width: 95%; }
+}
 html, body {
   margin: 0;
   padding: 0;
