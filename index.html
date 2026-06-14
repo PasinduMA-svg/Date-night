@@ -12,213 +12,70 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-@media (max-width: 768px) {
-  /* Make text smaller so it fits */
-  .hero-text h1 { font-size: 40px; left: 20px; }
-  
-  /* Stack items vertically instead of side-by-side */
-  .story-section, .question-section { flex-direction: column; padding: 20px; }
-  
-  /* Make images responsive */
-  .image-box img { width: 100%; height: auto; }
-  
-  /* Ensure text box fits screen */
-  .text-box { width: 90%; font-size: 18px; }
-  
-  /* Make the grid 1 column on mobile */
-  .grid { grid-template-columns: 1fr; }
-  
-  .calendar-box, .cuisine-box { width: 95%; }
-}
+
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   background: black;
-}
-
-body {
   font-family:'Montserrat',sans-serif;
 }
 
-section{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+/* Base section - used for hero and date section */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* FIXED: These sections need to flow normally, not be forced to 100vh */
+.story-section, .question-section {
+  min-height: auto;
+  padding: 50px 20px;
+  flex-direction: column;
+  gap: 30px;
 }
 
 /* ✅ LANDING */
-.hero{position:relative;}
-.hero img{width:100%;height:100%;object-fit:cover;}
+.hero { position: relative; width: 100%; }
+.hero img { width: 100%; height: 100vh; object-fit: cover; }
+.hero::after { content:""; position:absolute; inset:0; background:rgba(0,0,0,0.4); }
+.hero-text { position: absolute; top: 180px; left: 100px; color: white; z-index: 2; }
+.hero-text h1 { font-size: 70px; }
 
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.4);
-}
-
-.hero-text{
-  position:absolute;
-  top:180px;
-  left:100px;
-  color:white;
-  z-index:2;
-}
-
-.hero-text h1{font-size:70px;}
-
-/* ✅ STORY */
-.story-section{
-  background:#f5f5f5;
-  gap:70px;
-}
-
-.image-box img{
-  width:450px; height:520px;
-  border-radius:12px;
-  object-fit:cover;
-}
-
-.text-box{
-  max-width:650px;
-  font-family:'Patrick Hand',cursive;
-  font-size:22px;
-  line-height:1.7;
-}
-
-/* ✅ SECTION 3 */
-.question-section{
-  background:black;
-  color:white;
-  gap:70px;
-}
-
-.question-text h2{
-  font-family:'Playfair Display',serif;
-  font-size:50px;
-  text-align:center;
-}
+/* ✅ STORY & QUESTION SECTIONS */
+.image-box img { width: 450px; height: 520px; border-radius: 12px; object-fit: cover; }
+.text-box { max-width: 650px; font-family: 'Patrick Hand', cursive; font-size: 22px; line-height: 1.7; text-align: center; }
+.question-text h2 { font-family: 'Playfair Display', serif; font-size: 50px; text-align: center; }
 
 /* ✅ SECTION 4 */
-.date-section{position:relative;}
+.date-section { position: relative; width: 100%; min-height: 100vh; }
+.date-section img { position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.date-section::after { content:""; position:absolute; inset:0; background:rgba(0,0,0,0.6); z-index:1; }
+.content { position: relative; z-index: 2; text-align: center; color: white; padding: 20px; }
 
-.date-section img{
-  position:absolute;
-  width:100%;height:100%;
-  object-fit:cover;
-  z-index:0;
-}
+/* ✅ BOXES & UI */
+button { padding: 12px 20px; border: none; border-radius: 8px; margin: 10px; cursor: pointer; }
+.yes { background: #28a745; color: white; }
+.no { background: #dc3545; color: white; }
+.calendar-box, .cuisine-box { display: none; position: absolute; z-index: 3; background: rgba(255,255,255,0.15); backdrop-filter: blur(15px); padding: 30px; border-radius: 16px; width: 90%; max-width: 500px; color: white; text-align: center; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
+.card { background: rgba(255,255,255,0.25); padding: 12px; border-radius: 12px; }
+select { width: 100%; padding: 8px; margin-top: 5px; border: none; border-radius: 6px; }
+.final-box { display: none; position: absolute; z-index: 4; color: white; font-size: 40px; text-align: center; }
+.play-btn { margin-top: 20px; padding: 14px 28px; font-size: 18px; color: white; border: none; border-radius: 12px; cursor: pointer; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); }
 
-.date-section::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  z-index:1;
-}
-
-.content{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  color:white;
-}
-
-button{
-  padding:12px 20px;
-  border:none;
-  border-radius:8px;
-  margin:10px;
-  cursor:pointer;
-}
-
-.yes{background:#28a745;color:white;}
-.no{background:#dc3545;color:white;}
-
-/* ✅ CALENDAR */
-.calendar-box{
-  display:none;
-  position:absolute;
-  z-index:3;
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(15px);
-  padding:40px;
-  border-radius:16px;
-  text-align:center;
-  color:white;
-  width:350px;
-}
-
-.calendar-box input{
-  width:100%;
-  padding:12px;
-  border-radius:8px;
-  border:none;
-  margin-top:10px;
-}
-
-/* ✅ CUISINE */
-.cuisine-box{
-  display:none;
-  position:absolute;
-  z-index:3;
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(15px);
-  padding:25px;
-  border-radius:16px;
-  width:80%;
-  max-width:700px;
-  color:white;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.card{
-  background:rgba(255,255,255,0.25);
-  padding:12px;
-  border-radius:12px;
-}
-
-select{
-  width:100%;
-  padding:8px;
-  margin-top:5px;
-  border:none;
-  border-radius:6px;
-}
-
-/* ✅ FINAL */
-.final-box{
-  display:none;
-  position:absolute;
-  z-index:4;
-  color:white;
-  font-size:60px;
-  text-align:center;
-}
-
-/* ✅ PLAY BUTTON */
-.play-btn {
-  margin-top: 20px;
-  padding: 14px 28px;
-  font-size: 18px;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
-}
-
-.play-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
+/* ✅ MOBILE FIXES */
+@media (max-width: 768px) {
+  .hero-text { left: 20px; top: 100px; }
+  .hero-text h1 { font-size: 40px; }
+  .image-box img { width: 90%; height: auto; }
+  .text-box { font-size: 18px; }
+  .question-text h2 { font-size: 35px; }
+  .grid { grid-template-columns: 1fr; }
+  .calendar-box, .cuisine-box { width: 90%; padding: 20px; }
 }
 </style>
 </head>
